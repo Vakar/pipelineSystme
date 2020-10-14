@@ -1,4 +1,4 @@
-package com.dbbest.parser;
+package com.dbbest.csv;
 
 public enum Delimiter {
   SEMICOLON(";");
