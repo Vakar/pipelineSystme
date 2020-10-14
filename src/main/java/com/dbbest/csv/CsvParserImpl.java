@@ -1,4 +1,4 @@
-package com.dbbest.parser;
+package com.dbbest.csv;
 
 import com.dbbest.model.Path;
 import com.dbbest.model.Pipe;
@@ -16,7 +16,7 @@ public class CsvParserImpl implements CsvParser {
   public Set<Pipe> parsePipeSystem(File csvFile, Delimiter delimiter) {
     Set<Pipe> pipes = new HashSet<>();
     try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-      String line;
+      String line = br.readLine(); // skip file header line
       while ((line = br.readLine()) != null) {
         String[] values = line.split(delimiter.getValue());
         Pipe pipe =
@@ -36,7 +36,7 @@ public class CsvParserImpl implements CsvParser {
   public Set<Path> parsePathList(File csvFile, Delimiter delimiter) {
     Set<Path> pathSet = new HashSet<>();
     try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-      String line;
+      String line = br.readLine(); // skip file header line
       while ((line = br.readLine()) != null) {
         String[] values = line.split(delimiter.getValue());
         Path pipe = Path.of(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
