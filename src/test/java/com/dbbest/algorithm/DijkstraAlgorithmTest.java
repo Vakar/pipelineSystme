@@ -21,19 +21,16 @@ public class DijkstraAlgorithmTest {
 
   @Test
   public void test1() {
-    dijkstra.execute(2);
-    assertEquals(35, dijkstra.getDistance(5));
+    assertEquals(35, dijkstra.getDistance(2, 5));
   }
 
   @Test
   public void test2() {
-    dijkstra.execute(2);
-    assertEquals(-1, dijkstra.getDistance(6));
+    assertEquals(-1, dijkstra.getDistance(2, 6));
   }
 
   @Test
   public void test3() {
-    dijkstra.execute(6);
-    assertEquals(20, dijkstra.getDistance(7));
+    assertEquals(20, dijkstra.getDistance(6, 7));
   }
 }

@@ -4,7 +4,7 @@ import com.dbbest.model.Pipe;
 
 import java.util.*;
 
-public class DijkstraAlgorithm {
+public class DijkstraAlgorithm implements DistanceFinder {
 
   private final List<Pipe> edges;
   private Set<Integer> settledNodes;
@@ -85,7 +85,9 @@ public class DijkstraAlgorithm {
     }
   }
 
-  public int getDistance(Integer vertex){
-    return distance.getOrDefault(vertex, -1);
+  @Override
+  public int getDistance(int from, int to) {
+    execute(from);
+    return distance.getOrDefault(to, -1);
   }
 }

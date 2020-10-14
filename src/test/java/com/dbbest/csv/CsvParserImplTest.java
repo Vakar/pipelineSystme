@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -38,7 +39,7 @@ class CsvParserImplTest {
   @DisplayName("Parse pipeline system csv file")
   void parsePipeSystemTest() throws URISyntaxException {
     File pipeSystemCsvFile = getFileByName(PIPE_SYSTEM_FILE);
-    Set<Pipe> actualPipeSet = csvParser.parsePipeSystem(pipeSystemCsvFile, Delimiter.SEMICOLON);
+    List<Pipe> actualPipeSet = csvParser.parsePipeSystem(pipeSystemCsvFile, Delimiter.SEMICOLON);
     assertThat(pipeSet).hasSize(actualPipeSet.size()).hasSameElementsAs(actualPipeSet);
   }
 
@@ -46,7 +47,7 @@ class CsvParserImplTest {
   @DisplayName("Parse set of points csv file")
   void parsePathListTest() throws URISyntaxException {
     File setOfPointsCsvFile = getFileByName(SET_OF_POINTS);
-    Set<Path> actualPathSet = csvParser.parsePathList(setOfPointsCsvFile, Delimiter.SEMICOLON);
+    List<Path> actualPathSet = csvParser.parsePathList(setOfPointsCsvFile, Delimiter.SEMICOLON);
     assertThat(pathSet).hasSize(actualPathSet.size()).hasSameElementsAs(actualPathSet);
   }
 

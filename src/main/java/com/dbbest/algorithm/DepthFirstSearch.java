@@ -3,18 +3,16 @@ package com.dbbest.algorithm;
 import com.dbbest.model.Pipe;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-public class DepthFirstSearch {
+public class DepthFirstSearch implements ConnectionChecker {
 
   private final List<List<Integer>> connectedPipes;
+  private final int MAX_NUMBER_OF_VERTEX = 1024;
 
   public DepthFirstSearch(List<Pipe> pipeList) {
     connectedPipes = new ArrayList<>();
-    int numberOfPoints = findNumberOfPoints(pipeList);
-    for (int i = 0; i < numberOfPoints; i++) {
+    for (int i = 0; i < MAX_NUMBER_OF_VERTEX; i++) {
       connectedPipes.add(new ArrayList<>());
     }
     for (Pipe edge : pipeList) {
@@ -22,16 +20,7 @@ public class DepthFirstSearch {
     }
   }
 
-  private int findNumberOfPoints(List<Pipe> pipeList) {
-    Set<Integer> pointSet = new HashSet<>();
-    for (Pipe pipe : pipeList) {
-      pointSet.add(pipe.getStartPoint());
-      pointSet.add(pipe.getEndPoint());
-    }
-    return pointSet.size();
-  }
-
-  public boolean isConnected(int startPoint, int endPoint, boolean[] discovered) {
+  boolean isConnected(int startPoint, int endPoint, boolean[] discovered) {
     discovered[startPoint] = true;
     if (startPoint == endPoint) {
       return true;
@@ -44,5 +33,11 @@ public class DepthFirstSearch {
       }
     }
     return false;
+  }
+
+  @Override
+  public boolean isPointsConnected(int pointA, int pointB) {
+    boolean[] discovered = new boolean[MAX_NUMBER_OF_VERTEX];
+    return isConnected(pointA, pointB, discovered);
   }
 }

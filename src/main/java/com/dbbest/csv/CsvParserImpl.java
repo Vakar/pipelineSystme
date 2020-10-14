@@ -7,14 +7,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CsvParserImpl implements CsvParser {
 
   @Override
-  public Set<Pipe> parsePipeSystem(File csvFile, Delimiter delimiter) {
-    Set<Pipe> pipes = new HashSet<>();
+  public List<Pipe> parsePipeSystem(File csvFile, Delimiter delimiter) {
+    List<Pipe> pipes = new ArrayList<>();
     try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
       String line = br.readLine(); // skip file header line
       while ((line = br.readLine()) != null) {
@@ -33,8 +33,8 @@ public class CsvParserImpl implements CsvParser {
   }
 
   @Override
-  public Set<Path> parsePathList(File csvFile, Delimiter delimiter) {
-    Set<Path> pathSet = new HashSet<>();
+  public List<Path> parsePathList(File csvFile, Delimiter delimiter) {
+    List<Path> pathSet = new ArrayList<>();
     try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
       String line = br.readLine(); // skip file header line
       while ((line = br.readLine()) != null) {
