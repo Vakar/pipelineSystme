@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "of")
 public @Data class Pipe {
-  private int startPoint;
-  private int endPoint;
+  private Integer startPoint;
+  private Integer endPoint;
   private int length;
 }
