@@ -3,8 +3,12 @@ package com.dbbest.parser;
 import com.dbbest.model.Path;
 import com.dbbest.model.Pipe;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CsvParserImpl implements CsvParser {
 
@@ -16,7 +20,7 @@ public class CsvParserImpl implements CsvParser {
       while ((line = br.readLine()) != null) {
         String[] values = line.split(delimiter.getValue());
         Pipe pipe =
-            new Pipe(
+            Pipe.of(
                 Integer.parseInt(values[0]),
                 Integer.parseInt(values[1]),
                 Integer.parseInt(values[2]));
@@ -35,7 +39,7 @@ public class CsvParserImpl implements CsvParser {
       String line;
       while ((line = br.readLine()) != null) {
         String[] values = line.split(delimiter.getValue());
-        Path pipe = new Path(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
+        Path pipe = Path.of(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
         pathSet.add(pipe);
       }
     } catch (IOException e) {
