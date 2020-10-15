@@ -1,7 +1,7 @@
 package com.dbbest;
 
 import com.dbbest.dao.PipeDao;
-import com.dbbest.dao.PipeDaoMock;
+import com.dbbest.dao.PipeDaoImpl;
 import com.dbbest.model.Path;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +22,7 @@ public class App extends Application {
   private static final String DEFAULT_SCENE = "uploadPipelineSystem";
 
   // SHARE START
-  public static PipeDao pipeDao = new PipeDaoMock();
+  public static PipeDao pipeDao = new PipeDaoImpl();
   private static List<Path> setOfPoints;
   private static String directoryPath;
 
