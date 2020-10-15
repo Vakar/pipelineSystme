@@ -20,7 +20,7 @@ public class CsvParserImpl implements CsvParser {
       while ((line = br.readLine()) != null) {
         String[] values = line.split(delimiter.getValue());
         Pipe pipe =
-            Pipe.of(
+            new Pipe(
                 Integer.parseInt(values[0]),
                 Integer.parseInt(values[1]),
                 Integer.parseInt(values[2]));
@@ -39,7 +39,7 @@ public class CsvParserImpl implements CsvParser {
       String line = br.readLine(); // skip file header line
       while ((line = br.readLine()) != null) {
         String[] values = line.split(delimiter.getValue());
-        Path pipe = Path.of(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
+        Path pipe = new Path(Integer.parseInt(values[0]), Integer.parseInt(values[1]));
         pathSet.add(pipe);
       }
     } catch (IOException e) {

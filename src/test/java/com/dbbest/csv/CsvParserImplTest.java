@@ -26,14 +26,14 @@ class CsvParserImplTest {
   private final Set<Pipe> pipeSet =
       new HashSet<>(
           Arrays.asList(
-              Pipe.of(1, 2, 10),
-              Pipe.of(2, 3, 20),
-              Pipe.of(3, 4, 30),
-              Pipe.of(3, 5, 15),
-              Pipe.of(6, 7, 20)));
+              new Pipe(1, 2, 10),
+              new Pipe(2, 3, 20),
+              new Pipe(3, 4, 30),
+              new Pipe(3, 5, 15),
+              new Pipe(6, 7, 20)));
 
   private final Set<Path> pathSet =
-      new HashSet<>(Arrays.asList(Path.of(2, 5), Path.of(2, 6), Path.of(6, 7)));
+      new HashSet<>(Arrays.asList(new Path(2, 5), new Path(2, 6), new Path(6, 7)));
 
   @Test
   @DisplayName("Parse pipeline system csv file")

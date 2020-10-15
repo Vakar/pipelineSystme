@@ -13,16 +13,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @DisplayName("DEPTH FIRST SEARCH ALGORITHM TEST")
 class DepthFirstSearchTest {
 
-  private final int NUMBER_OF_VERTEX = 8;
   private final List<Pipe> edges =
       Arrays.asList(
-          Pipe.of(1, 2, 10),
-          Pipe.of(3, 4, 30),
-          Pipe.of(3, 5, 15),
-          Pipe.of(2, 3, 20),
-          Pipe.of(6, 7, 20));
+          new Pipe(1, 2, 10),
+          new Pipe(3, 4, 30),
+          new Pipe(3, 5, 15),
+          new Pipe(2, 3, 20),
+          new Pipe(6, 7, 20));
   private final DepthFirstSearch dfs = new DepthFirstSearch(edges);
-  boolean[] discovered = new boolean[NUMBER_OF_VERTEX];
 
   @Test
   @DisplayName("Dataset 1")

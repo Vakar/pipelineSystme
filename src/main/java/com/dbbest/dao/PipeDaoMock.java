@@ -26,7 +26,6 @@ public class PipeDaoMock implements PipeDao {
 
   @Override
   public void save(Pipe pipe) {
-    System.out.println(pipe);
     pipes.add(pipe);
   }
 }

@@ -37,9 +37,9 @@ public class SaveResultController {
     for (Path path : pathSet) {
       if (checker.isPointsConnected(path.getFromPoint(), path.getToPoint())) {
         int distance = distanceFinder.getDistance(path.getFromPoint(), path.getToPoint());
-        resultList.add(Result.of(true, distance));
+        resultList.add(new Result(true, distance));
       } else {
-        resultList.add(Result.of(false, 0));
+        resultList.add(new Result(false, 0));
       }
     }
     return resultList;

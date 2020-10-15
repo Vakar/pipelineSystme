@@ -9,8 +9,8 @@ class CsvWriterImplTest {
 
   private CsvWriterImpl csvWriter = new CsvWriterImpl();
 
-  private Result resultTrue = Result.of(true, 35);
-  private Result resultFalse = Result.of(false, 0);
+  private Result resultTrue = new Result(true, 35);
+  private Result resultFalse = new Result(false, 0);
 
   @Test
   void replaceBooleanTrueTest() {
