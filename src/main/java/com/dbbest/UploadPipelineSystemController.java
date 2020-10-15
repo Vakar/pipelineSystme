@@ -22,20 +22,24 @@ public class UploadPipelineSystemController {
 
   @FXML
   private void uploadPipelineSystem(ActionEvent event) throws IOException {
-    Window window = ((Node) (event.getSource())).getScene().getWindow();
-    FileChooser fileChooser = new FileChooser();
-    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
-    File file = fileChooser.showOpenDialog(window);
-    event.consume();
-    List<Pipe> pipeSet = parser.parsePipeSystem(file, Delimiter.SEMICOLON);
-    pipeSet.forEach(
-        pipe -> {
-          if (!pipeDao.isExists(pipe.getStartPoint(), pipe.getEndPoint())) {
-            pipeDao.save(pipe);
-          } else {
-            System.out.println("exist");
-          }
-        });
-    App.setRoot("uploadSetOfPoints");
+    try {
+      Window window = ((Node) (event.getSource())).getScene().getWindow();
+      FileChooser fileChooser = new FileChooser();
+      fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+      File file = fileChooser.showOpenDialog(window);
+      List<Pipe> pipeSet = parser.parsePipeSystem(file, Delimiter.SEMICOLON);
+      pipeSet.forEach(
+          pipe -> {
+            if (!pipeDao.isExists(pipe.getStartPoint(), pipe.getEndPoint())) {
+              pipeDao.save(pipe);
+            }
+          });
+      App.setRoot("uploadSetOfPoints");
+    } catch (Exception e) {
+      App.showAlert("Maybe you didn't peek a file or dataset invalid.");
+      App.setRoot("uploadPipelineSystem");
+    } finally {
+      event.consume();
+    }
   }
 }

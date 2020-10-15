@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -57,6 +58,14 @@ public class App extends Application {
   private static Parent loadFXML(String fxml) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
     return fxmlLoader.load();
+  }
+
+  public static void showAlert(String message){
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle("Oops, something goes wrong!");
+    alert.setHeaderText(message);
+    alert.setContentText("Please try again!");
+    alert.showAndWait();
   }
 
   public static void main(String[] args) {

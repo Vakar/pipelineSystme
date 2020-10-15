@@ -23,11 +23,16 @@ public class SaveResultController {
 
   @FXML
   private void saveResultsToFile() throws IOException {
-    List<Pipe> pipeList = pipeDao.findAll();
-    List<Path> pathSet = App.getSetOfPoints();
-    List<Result> resultList = calculateDistances(pipeList, pathSet);
-    csvWriter.writeCsvFile(resultList, App.getDirectoryPath());
-    App.setRoot("wellDone");
+    try {
+      List<Pipe> pipeList = pipeDao.findAll();
+      List<Path> pathSet = App.getSetOfPoints();
+      List<Result> resultList = calculateDistances(pipeList, pathSet);
+      csvWriter.writeCsvFile(resultList, App.getDirectoryPath());
+      App.setRoot("wellDone");
+    } catch (Exception e) {
+      App.showAlert("There is an issue with file writing process.");
+      App.setRoot("saveResult");
+    }
   }
 
   private List<Result> calculateDistances(List<Pipe> pipeList, List<Path> pathSet) {

@@ -18,11 +18,18 @@ public class UploadSetOfPointsController {
 
   @FXML
   private void uploadSetOfPoints(ActionEvent event) throws IOException {
-    Window window = ((Node) (event.getSource())).getScene().getWindow();
-    FileChooser fileChooser = new FileChooser();
-    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
-    File file = fileChooser.showOpenDialog(window);
-    App.setSetOfPoints(parser.parsePathList(file, Delimiter.SEMICOLON));
-    App.setRoot("selectOutputDirectory");
+    try {
+      Window window = ((Node) (event.getSource())).getScene().getWindow();
+      FileChooser fileChooser = new FileChooser();
+      fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+      File file = fileChooser.showOpenDialog(window);
+      App.setSetOfPoints(parser.parsePathList(file, Delimiter.SEMICOLON));
+      App.setRoot("selectOutputDirectory");
+    } catch (Exception e){
+      App.showAlert("Maybe you didn't peek a file or dataset invalid.");
+      App.setRoot("uploadSetOfPoints");
+    } finally{
+      event.consume();
+    }
   }
 }
