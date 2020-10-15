@@ -10,7 +10,7 @@ import java.util.Properties;
 
 public class JDBCUtil {
 
-  private static final File DB_FILE = new File("./pipeSystem");
+  private static final File DB_FILE = new File("./pipelineSystem");
 
   private static final String USER_NAME = "sa";
   private static final String PSWD = "";
