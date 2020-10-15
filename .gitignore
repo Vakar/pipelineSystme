@@ -1,6 +1,5 @@
 .idea
 *.iml
 target/
-datasets/**
 pipeSystem.mv.db
 pipeSystem.trace.db
