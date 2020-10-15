@@ -21,7 +21,7 @@ public class App extends Application {
   private static final String APP_TITLE = "DBBest Water Pipeline System";
   private static final String DEFAULT_SCENE = "uploadPipelineSystem";
 
-  // SHARE START
+  // THIS SECTION FOR SHARING BETWEEN CONTROLLERS | STARTS
   public static PipeDao pipeDao = new PipeDaoImpl();
   private static List<Path> setOfPoints;
   private static String directoryPath;
@@ -41,7 +41,7 @@ public class App extends Application {
   public static void setSetOfPoints(List<Path> setOfPoints) {
     App.setOfPoints = setOfPoints;
   }
-  // SHARE START
+  // THIS SECTION FOR SHARING BETWEEN CONTROLLERS | ENDS
 
   @Override
   public void start(Stage stage) throws IOException {
@@ -49,6 +49,7 @@ public class App extends Application {
     stage.setScene(scene);
     stage.setTitle(APP_TITLE);
     stage.show();
+    scene.getStylesheets().add("css/flatBee.css");
   }
 
   public static void setRoot(String fxml) throws IOException {

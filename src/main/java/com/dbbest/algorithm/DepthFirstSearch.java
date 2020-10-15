@@ -8,7 +8,7 @@ import java.util.List;
 public class DepthFirstSearch implements ConnectionChecker {
 
   private final List<List<Integer>> connectedPipes;
-  private final int MAX_NUMBER_OF_VERTEX = Short.MAX_VALUE;
+  private static final int MAX_NUMBER_OF_VERTEX = Short.MAX_VALUE;
 
   public DepthFirstSearch(List<Pipe> pipeList) {
     connectedPipes = new ArrayList<>();

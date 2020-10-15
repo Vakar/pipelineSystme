@@ -7,8 +7,8 @@
 
 <VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dbbest.UploadPipelineSystemController">
    <children>
-      <Label text="Please upload file with water pipeline system" />
-      <Button fx:id="primaryButton" text="upload file" onAction="#uploadPipelineSystem"/>
+      <Label text="PLEASE UPLOAD PIPELINE SYSTEM AS CSV FILE" />
+      <Button fx:id="primaryButton" text="UPLOAD PIPELINE SYSTEM" onAction="#uploadPipelineSystem"/>
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

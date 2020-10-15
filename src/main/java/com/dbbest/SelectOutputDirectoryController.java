@@ -13,18 +13,17 @@ public class SelectOutputDirectoryController {
 
   @FXML
   private void selectOutputDirectory(ActionEvent event) throws IOException {
-    try{
+    try {
       Window window = ((Node) (event.getSource())).getScene().getWindow();
       DirectoryChooser directoryChooser = new DirectoryChooser();
       File selectedDirectory = directoryChooser.showDialog(window);
       App.setDirectoryPath(selectedDirectory.getAbsolutePath());
-      App.setRoot("saveResult");
-    } catch (Exception e){
+      App.setRoot(Rout.SAVE_RESULT.value);
+    } catch (Exception e) {
       App.showAlert("Maybe you didn't peek a directory or directory invalid.");
-      App.setRoot("selectOutputDirectory");
+      App.setRoot(Rout.SELECT_OUTPUT_DIRECTORY.value);
     } finally {
       event.consume();
     }
-
   }
 }

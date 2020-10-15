@@ -28,10 +28,10 @@ public class SaveResultController {
       List<Path> pathSet = App.getSetOfPoints();
       List<Result> resultList = calculateDistances(pipeList, pathSet);
       csvWriter.writeCsvFile(resultList, App.getDirectoryPath());
-      App.setRoot("wellDone");
+      App.setRoot(Rout.WELL_DONE.value);
     } catch (Exception e) {
       App.showAlert("There is an issue with file writing process.");
-      App.setRoot("saveResult");
+      App.setRoot(Rout.SAVE_RESULT.value);
     }
   }
 

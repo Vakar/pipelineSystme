@@ -34,10 +34,10 @@ public class UploadPipelineSystemController {
               pipeDao.save(pipe);
             }
           });
-      App.setRoot("uploadSetOfPoints");
+      App.setRoot(Rout.UPLOAD_SET_OF_POINTS.value);
     } catch (Exception e) {
       App.showAlert("Maybe you didn't peek a file or dataset invalid.");
-      App.setRoot("uploadPipelineSystem");
+      App.setRoot(Rout.UPLOAD_PIPELINE_SYSTEM.value);
     } finally {
       event.consume();
     }

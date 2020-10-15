@@ -8,6 +8,6 @@ public class WellDoneController {
 
   @FXML
   private void goHome() throws IOException {
-    App.setRoot("uploadPipelineSystem");
+    App.setRoot(Rout.UPLOAD_PIPELINE_SYSTEM.value);
   }
 }

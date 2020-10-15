@@ -24,11 +24,11 @@ public class UploadSetOfPointsController {
       fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
       File file = fileChooser.showOpenDialog(window);
       App.setSetOfPoints(parser.parsePathList(file, Delimiter.SEMICOLON));
-      App.setRoot("selectOutputDirectory");
-    } catch (Exception e){
+      App.setRoot(Rout.SELECT_OUTPUT_DIRECTORY.value);
+    } catch (Exception e) {
       App.showAlert("Maybe you didn't peek a file or dataset invalid.");
-      App.setRoot("uploadSetOfPoints");
-    } finally{
+      App.setRoot(Rout.UPLOAD_SET_OF_POINTS.value);
+    } finally {
       event.consume();
     }
   }
