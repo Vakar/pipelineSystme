@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SaveResultController {
 
@@ -36,13 +37,23 @@ public class SaveResultController {
   }
 
   private List<Result> calculateDistances(List<Pipe> pipeList, List<Path> pathSet) {
+    List<Result> resultList = new ArrayList<>();
     ConnectionChecker checker = new DepthFirstSearch(pipeList);
     DistanceFinder distanceFinder = new DijkstraAlgorithm(pipeList);
-    List<Result> resultList = new ArrayList<>();
-    for (Path path : pathSet) {
-      if (checker.isPointsConnected(path.getFromPoint(), path.getToPoint())) {
-        int distance = distanceFinder.getDistance(path.getFromPoint(), path.getToPoint());
-        resultList.add(new Result(true, distance));
+    List<Path> flipPathSet =
+        pathSet.stream()
+            .map(path -> new Path(path.getToPoint(), path.getFromPoint()))
+            .collect(Collectors.toList());
+    for (int i = 0; i < pathSet.size(); i++) {
+      Path directPath = pathSet.get(i);
+      Path reversePath = flipPathSet.get(i);
+      if (checker.isPointsConnected(directPath.getFromPoint(), directPath.getToPoint())) {
+        int directDistance =
+            distanceFinder.getDistance(directPath.getFromPoint(), directPath.getToPoint());
+        int reverseDistance =
+            distanceFinder.getDistance(reversePath.getFromPoint(), reversePath.getToPoint());
+        int shortestDistance = Math.min(directDistance, reverseDistance);
+        resultList.add(new Result(true, shortestDistance));
       } else {
         resultList.add(new Result(false, 0));
       }
