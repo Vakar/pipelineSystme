@@ -15,7 +15,6 @@ import javafx.fxml.FXML;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SaveResultController {
 
@@ -37,27 +36,41 @@ public class SaveResultController {
   }
 
   private List<Result> calculateDistances(List<Pipe> pipeList, List<Path> pathSet) {
-    List<Result> resultList = new ArrayList<>();
-    ConnectionChecker checker = new DepthFirstSearch(pipeList);
+    ConnectionChecker connectionChecker = new DepthFirstSearch(pipeList);
     DistanceFinder distanceFinder = new DijkstraAlgorithm(pipeList);
-    List<Path> flipPathSet =
-        pathSet.stream()
-            .map(path -> new Path(path.getToPoint(), path.getFromPoint()))
-            .collect(Collectors.toList());
-    for (int i = 0; i < pathSet.size(); i++) {
-      Path directPath = pathSet.get(i);
-      Path reversePath = flipPathSet.get(i);
-      if (checker.isPointsConnected(directPath.getFromPoint(), directPath.getToPoint())) {
-        int directDistance =
-            distanceFinder.getDistance(directPath.getFromPoint(), directPath.getToPoint());
-        int reverseDistance =
-            distanceFinder.getDistance(reversePath.getFromPoint(), reversePath.getToPoint());
-        int shortestDistance = Math.min(directDistance, reverseDistance);
+    List<Result> resultList = new ArrayList<>();
+    for (Path path : pathSet) {
+      if (isPointsConnected(connectionChecker, path)) {
+        int shortestDistance = findShortestDistance(distanceFinder, path);
         resultList.add(new Result(true, shortestDistance));
       } else {
         resultList.add(new Result(false, 0));
       }
     }
     return resultList;
+  }
+
+  private boolean isPointsConnected(ConnectionChecker connectionChecker, Path path) {
+    int from = path.getFromPoint();
+    int to = path.getToPoint();
+    return connectionChecker.isPointsConnected(from, to);
+  }
+
+  private int findShortestDistance(DistanceFinder distanceFinder, Path path) {
+    int directDistance = findDistance(distanceFinder, path);
+    int reverseDistance = findDistance(distanceFinder, flipPath(path));
+    return Math.min(directDistance, reverseDistance);
+  }
+
+  private int findDistance(DistanceFinder distanceFinder, Path path) {
+    int from = path.getFromPoint();
+    int to = path.getToPoint();
+    return distanceFinder.getDistance(from, to);
+  }
+
+  private Path flipPath(Path path) {
+    int from = path.getFromPoint();
+    int to = path.getToPoint();
+    return new Path(to, from);
   }
 }
